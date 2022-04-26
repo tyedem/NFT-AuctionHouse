@@ -18,7 +18,12 @@ In this project, we aim to create an NFT marketplace for the auction of digital 
 
 ## Goals
 ---
-An executive summary of the project and project goals. (5 points). Explain how this project relates to fintech. ( to be updated??)
+In recent years, there has been an ever increasing interest in NFTs, both in terms of ownership and exchange. Our goal is to build a platform that aims to provide a user friendly and efficient solution to this domain of Fintech. It provides:
+
+* Platform to connect NFT collectors with custom artwork peices that may interest them
+* Ability to place bids for the items over a decentralized network in cryptocurrency
+* Trace of ownership and re-sale history of each peice of work
+* Provide a secure file storage (ipfs versus http) to maintain repositroy and owndership/event history
 
 ## Data Collection and Preparation
 ---
@@ -74,13 +79,18 @@ Project Team
 
 <h2><a href="https://github.com/RiteshChugani"><img src="https://avatars.githubusercontent.com/u/93497343?s=60&" /> RiteshChugani</a></h2>
 
+<h2><a href="https://github.com/1ightray"><img src="https://avatars.githubusercontent.com/u/93296496?v=4" width=60/> 1ightray</a></h2>
+
+
+
 <h2><a href="https://github.com/ksmaria"><img src="https://avatars.githubusercontent.com/u/93277973?s=60&v=4" /> ksmaria</a></h2>
 
 
 ## References and Resources
 ---
-</br>
-</br>
+[What is Polygon?](https://www.wealthsimple.com/en-ca/learn/what-is-polygon?utm_term=&matchtype=&campaign=16685794737&adgroup=138618658447&gclid=CjwKCAjwx46TBhBhEiwArA_DjH4oks3iZWEumuZnRH1iTbVFVlwNUI9OVcZhZeqe6JPyX30xUS4fChoCJxQQAvD_BwE#the_problem_with_ethereum)</br>
+[NFT Sales](https://www.nytimes.com/2021/03/26/technology/nft-sale.html)</br>
+[Gas-Free NFT IPFS](https://opensea.io/blog/announcements/decentralizing-nft-metadata-on-opensea/)</br>
 </br>
 </br>
 </br>
