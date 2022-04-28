@@ -1,5 +1,5 @@
 # Project 3: Auction Market Place for NFTs
-![alt=""](Images/solidity_image.png)</br>
+![alt=""](NFTImages/BANNER2.png)</br>
 ## Table of Contents
 * [Description](#description)
 * [Goals](#project-goals)
