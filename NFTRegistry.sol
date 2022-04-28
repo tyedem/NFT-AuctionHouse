@@ -1,14 +1,17 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.5.5;
+pragma solidity ^0.8.1;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Counters.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol";
 
-
-contract NFTRegistry is ERC721Full {
+contract NFTRegistry is ERC721 {
     address contractAddress;
     
-    constructor(address auctionAddress) public ERC721Full("AuctionToken", "AUT") {
+    constructor(address auctionAddress) public ERC721("AuctionToken", "AUT") {
         contractAddress = auctionAddress;
     }
 
