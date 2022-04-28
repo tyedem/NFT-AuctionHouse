@@ -1,35 +1,30 @@
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.5.5;
 
-pragma solidity ^0.8.1;
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
 
-import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Counters.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol";
-
-contract NFTRegistry is ERC721 {
+contract NFTRegistry is ERC721Full {
     address contractAddress;
     
-    constructor(address auctionAddress) public ERC721("AuctionToken", "AUT") {
-        contractAddress = auctionAddress;
+    constructor(address marketplaceAddress) public ERC721Full("NFTToken", "NFT") {
+        contractAddress = marketplaceAddress;
     }
 
     struct NFT {
         string name;
         string owner;
-        uint256 price;
+        uint256 appraisalValue;
     }
 
     mapping(uint256 => NFT) public NFTCollection;
 
-    event Price(uint256 tokenId, uint256 price, string reportURI);
+    event Appraisal(uint256 tokenId, uint256 appraisalValue, string reportURI);
 
     function registerNFT(
         address owner,
         string memory name,
         string memory creator,
-        uint256 initialPriceValue,
+        uint256 initialAppraisalValue,
         string memory tokenURI
     ) public returns (uint256) {
         uint256 tokenId = totalSupply();
@@ -37,20 +32,20 @@ contract NFTRegistry is ERC721 {
         _mint(owner, tokenId);
         _setTokenURI(tokenId, tokenURI);
 
-        NFTCollection[tokenId] = NFT(name, creator, initialPriceValue);
+        NFTCollection[tokenId] = NFT(name, creator, initialAppraisalValue);
 
         return tokenId;
     }
 
-    function newPrice(
+    function newAppraisal(
         uint256 tokenId,
-        uint256 newPriceValue,
+        uint256 newAppraisalValue,
         string memory reportURI
     ) public returns (uint256) {
-        NFTCollection[tokenId].price = newPriceValue;
+        NFTCollection[tokenId].appraisalValue = newAppraisalValue;
 
-        emit Price(tokenId, newPriceValue, reportURI);
+        emit Appraisal(tokenId, newAppraisalValue, reportURI);
 
-        return NFTCollection[tokenId].price;
+        return NFTCollection[tokenId].appraisalValue;
     }
 }
