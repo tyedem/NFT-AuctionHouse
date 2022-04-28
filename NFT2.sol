@@ -16,8 +16,9 @@ contract NFTRegistry is ERC721, ERC721URIStorage, Ownable {
     address payable _owner;
     uint256 listingPrice = 0.1 ether;
 
-    constructor(address auctionAddress) ERC721("NFTRegistry", "AUT") {
+    constructor(address auctionAddress) ERC721("AuctionRegistry", "AUT") {
         contractAddress = auctionAddress;
+        _owner = payable(msg.sender);
     }
 
     function registerNFT(
