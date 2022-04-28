@@ -1,30 +1,32 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.0;
+
+pragma solidity ^0.5.5;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+
 
 contract NFTRegistry is ERC721Full {
     address contractAddress;
     
-    constructor(address marketplaceAddress) public ERC721Full("NFTToken", "NFT") {
-        contractAddress = marketplaceAddress;
+    constructor(address auctionAddress) public ERC721Full("AuctionToken", "AUT") {
+        contractAddress = auctionAddress;
     }
 
     struct NFT {
         string name;
         string owner;
-        uint256 appraisalValue;
+        uint256 price;
     }
 
     mapping(uint256 => NFT) public NFTCollection;
 
-    event Appraisal(uint256 tokenId, uint256 appraisalValue, string reportURI);
+    event Price(uint256 tokenId, uint256 price, string reportURI);
 
     function registerNFT(
         address owner,
         string memory name,
         string memory creator,
-        uint256 initialAppraisalValue,
+        uint256 initialPriceValue,
         string memory tokenURI
     ) public returns (uint256) {
         uint256 tokenId = totalSupply();
@@ -32,20 +34,20 @@ contract NFTRegistry is ERC721Full {
         _mint(owner, tokenId);
         _setTokenURI(tokenId, tokenURI);
 
-        NFTCollection[tokenId] = NFT(name, creator, initialAppraisalValue);
+        NFTCollection[tokenId] = NFT(name, creator, initialPriceValue);
 
         return tokenId;
     }
 
-    function newAppraisal(
+    function newPrice(
         uint256 tokenId,
-        uint256 newAppraisalValue,
+        uint256 newPriceValue,
         string memory reportURI
     ) public returns (uint256) {
-        NFTCollection[tokenId].appraisalValue = newAppraisalValue;
+        NFTCollection[tokenId].price = newPriceValue;
 
-        emit Appraisal(tokenId, newAppraisalValue, reportURI);
+        emit Price(tokenId, newPriceValue, reportURI);
 
-        return NFTCollection[tokenId].appraisalValue;
+        return NFTCollection[tokenId].price;
     }
 }
