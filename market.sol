@@ -11,6 +11,27 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol";
 
+
+contract NFT is ERC721URIStorage {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+    address contractAddress;
+
+    constructor(address marketplaceAddress) ERC721("Digital Marketplace", "DMP") {
+        contractAddress = marketplaceAddress;
+    }
+
+    function createToken(address owner, string memory tokenURI) public returns (uint) {
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current();
+
+        _safeMint(msg.sender, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+        setApprovalForAll(contractAddress, true);
+        return newItemId;
+    }
+}
+
 contract PriceConsumerV3 {
 
     AggregatorV3Interface internal priceFeed;
@@ -35,27 +56,15 @@ contract PriceConsumerV3 {
     }
 }
 
-contract NFTMarket is ReentrancyGuard, PriceConsumerV3, ERC721URIStorage {
+contract NFTMarket is ReentrancyGuard, PriceConsumerV3 {
   using Counters for Counters.Counter;
   Counters.Counter private _itemIds;
   Counters.Counter private _itemsSold;
-  Counters.Counter private _tokenIds;
-  address contractAddress;
 
-  function createToken(address owner, string memory tokenURI) public returns (uint) {
-      _tokenIds.increment();
-      uint256 newItemId = _tokenIds.current();
-
-      _safeMint(msg.sender, newItemId);
-      _setTokenURI(newItemId, tokenURI);
-      setApprovalForAll(contractAddress, true);
-      return newItemId;
-  }
   address payable owner;
   uint256 listingPrice = 0.1 ether; // reduce 0
 
-  constructor(address marketplaceAddress) ERC721("Digital Marketplace", "DMP") {
-    contractAddress = marketplaceAddress;
+  constructor() PriceConsumerV3() {
     owner = payable(msg.sender);
   }
 

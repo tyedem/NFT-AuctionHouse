@@ -2,7 +2,7 @@
 
 pragma solidity 0.8.10;
 
-// Link to the NFT - transfer onwership
+// Link to the NFT - transfer ownership
 interface IERC721 {
     function transfer(address, uint) external;
 
@@ -25,7 +25,7 @@ contract Auction {
     bool public ended;
     uint public endAt;   // time to end the auction
 
-// define the NFT that will be auctioned - store contarct of NFT + unique ID of the NFT you need to auction
+// define the NFT that will be auctioned - store contract of NFT + unique ID of the NFT you need to auction
     IERC721 public nft;
     uint public nftId;
 
@@ -83,7 +83,7 @@ contract Auction {
         require(!ended, "Auction already ended!");
 
         if (highestBidder != address(0)) {
-            nft.transfer(highestBidder, nftId);  // transfer to highet bidder
+            nft.transfer(highestBidder, nftId);  // transfer to highest bidder
             (bool sent, bytes memory data) = seller.call{value: highestBid}("");
             require(sent, "Could not pay seller!");
         } else {
