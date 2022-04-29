@@ -13,12 +13,8 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, Ownable {
     Counters.Counter private _tokenIdCounter;
     address contractAddress;
 
-    address payable _owner;
-    uint256 listingPrice = 0.1 ether;
-
     constructor(address auctionAddress) ERC721("AuctionRegistry", "AUT") {
         contractAddress = auctionAddress;
-        _owner = payable(msg.sender);
     }
 
     function registerNFT(
@@ -26,11 +22,13 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, Ownable {
         string memory name,
         string memory creator,
         string memory uri
-        ) public onlyOwner {
+    ) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
+
         _tokenIdCounter.increment();
         _safeMint(owner, tokenId);
         _setTokenURI(tokenId, uri);
+
     }
 
     // The following functions are overrides required by Solidity.
@@ -47,10 +45,10 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, Ownable {
     {
         return super.tokenURI(tokenId);
     }
+    
 }
 
-
-contract PriceConsumerV3 {
+contract MaticUsdMumbaiOracle {
 
     AggregatorV3Interface internal priceFeed;
 
@@ -66,10 +64,19 @@ contract PriceConsumerV3 {
     /**
      * Returns the latest price
      */
-    function getLatestPrice() public view returns (uint256) {
+    function getLatestPrice() public view returns (
+        uint80 roundID, 
+        int price,
+        uint startedAt,
+        uint timeStamp,
+        uint80 answeredInRound
+    ) {
         (
-            ,int price,,,
+            roundID, 
+            price,
+            startedAt,
+            timeStamp,
+            answeredInRound
         ) = priceFeed.latestRoundData();
-        return uint256(price);
-    }
+    }   
 }
