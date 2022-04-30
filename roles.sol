@@ -75,12 +75,14 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl, MaticUsdMum
         _setTokenURI(tokenId, uri);
 
         require(msg.value == registrationPrice, "Price must be equal to listing price of 0.01 ETH");
-        payable(auctionOwner);
+        auctionOwner.transfer(address(this).balance);
     }
 
-//    function withdraw(uint _amount) public auctionOwner {
-  //      auctionOwner.transfer(_amount);
-    //}
+    function sendMoney(address to, uint value) public {
+    address payable receiver = payable(to);
+    receiver.transfer(value);
+    }
+   
 
     // The following functions are overrides required by Solidity.
 
