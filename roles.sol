@@ -40,19 +40,27 @@ contract MaticUsdMumbaiOracle {
     }   
 }
 
-contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl {
+contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl, MaticUsdMumbaiOracle {
     using Counters for Counters.Counter;
     address contractAddress;
 
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    address payable auctionOwner;
+    bytes32 public constant registrant = keccak256("Registrant");
+
     Counters.Counter private _tokenIdCounter;
 
     uint256 registrationPrice = 0.01 ether;
 
     constructor(address auctionAddress) ERC721("AuctionRegistry", "AUT") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _grantRole(MINTER_ROLE, msg.sender);
+        _grantRole(registrant, msg.sender);
+        auctionOwner == msg.sender;
         contractAddress = auctionAddress;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == auctionOwner, "You are not the auction owner!");
+        _;
     }
 
     function registerNFT(
@@ -60,15 +68,19 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl {
         string memory name,
         string memory creator,
         string memory uri
-    ) public payable onlyRole(MINTER_ROLE) {
+    ) public payable onlyRole(registrant) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(owner, tokenId);
         _setTokenURI(tokenId, uri);
 
         require(msg.value == registrationPrice, "Price must be equal to listing price of 0.01 ETH");
-        payable(msg.sender);
+        payable(auctionOwner);
     }
+
+//    function withdraw(uint _amount) public auctionOwner {
+  //      auctionOwner.transfer(_amount);
+    //}
 
     // The following functions are overrides required by Solidity.
 
