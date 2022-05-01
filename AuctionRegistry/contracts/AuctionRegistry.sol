@@ -16,6 +16,7 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, Ownable {
 
     address payable auctionOwner;
     uint256 registrationPrice = 0.01 ether;
+    uint256 auctionCount=0;
 
     constructor(address auctionAddress) ERC721("AuctionRegistry", "AUT") {
         contractAddress = auctionAddress;
@@ -45,14 +46,16 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, Ownable {
 
         require(msg.value == registrationPrice, "Price must be equal to listing price of 0.01 ETH");
         payable(msg.sender);
-        AuctionCollection[tokenId] = NFT(owner, name, creator, uri, tokenId);
+        AuctionCollection[auctionCount] = NFT(owner, name, creator, uri, tokenId);
+        auctionCount++
+		
     }
     // The following function returns the AuctionCollection
     //function getCollection() public view returns (string memory){
     //    return AuctionCollection[0].name;
     //}
     function getCollection() public view returns (uint[] memory, string[] memory,string[] memory){
-      uint auctionCount = 1; //need to acually set it to length (# of items) in AuctionCollection
+      //uint auctionCount = 1; //need to acually set it to length (# of items) in AuctionCollection
       uint[]    memory id = new uint[](auctionCount);
       string[]  memory name = new string[](auctionCount);
       string[]    memory uri = new string[](auctionCount);
