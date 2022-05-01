@@ -59,7 +59,7 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl, MaticUsdMum
         string memory name,
         string memory creator,
         string memory uri
-    ) public payable onlyRole(registrant) {
+    ) public onlyRole(registrant) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(owner, tokenId);
