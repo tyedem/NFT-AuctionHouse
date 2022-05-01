@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.10;
+pragma experimental ABIEncoderV2;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 //import "./AuctionRegistry.sol";
@@ -130,9 +131,11 @@ contract Auction is MaticUsdMumbaiOracle{
         ended = true;
         emit End(highestBidder, highestBid);
     }
-    function getNFTs() external
-    {
+ //   function getNFTs() external
+ //   {
         //trying first with specific position = 0
-        return nft.getCollection();
-    }
+        //return nft.getCollection();
+       // return "HERE";
+ //   }
+  
 }

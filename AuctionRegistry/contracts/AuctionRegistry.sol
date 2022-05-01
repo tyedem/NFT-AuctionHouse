@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
+pragma experimental ABIEncoderV2;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -47,9 +48,26 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, Ownable {
         AuctionCollection[tokenId] = NFT(owner, name, creator, uri, tokenId);
     }
     // The following function returns the AuctionCollection
-    function getCollection() public view returns (string memory){
-        return AuctionCollection[0].name;
-    }
+    //function getCollection() public view returns (string memory){
+    //    return AuctionCollection[0].name;
+    //}
+    function getCollection() public view returns (uint[] memory, string[] memory,string[] memory){
+      uint auctionCount = 1; //need to acually set it to length (# of items) in AuctionCollection
+      uint[]    memory id = new uint[](auctionCount);
+      string[]  memory name = new string[](auctionCount);
+      string[]    memory uri = new string[](auctionCount);
+      for (uint i = 0; i < auctionCount; i++) {
+          NFT storage art = AuctionCollection[i];
+          id[i] = art.tokenId;
+          name[i] = art.name;
+          uri[i] = art.uri;
+      }
+
+      return (id, name, uri);
+
+  }
+
+
 
     // The following functions are overrides required by Solidity.
 
