@@ -2,18 +2,55 @@
 
 pragma solidity 0.8.10;
 
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+//import "./AuctionRegistry.sol";
+
+contract MaticUsdMumbaiOracle {
+
+    AggregatorV3Interface internal priceFeed;
+
+    /**
+     * Network: Polygon Testnet (Mumbai)
+     * Aggregator: MATIC/USD
+     * Address: 0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada
+     */
+    constructor() {
+        priceFeed = AggregatorV3Interface(0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada);
+    }
+
+    /**
+     * Returns the latest price
+     */
+    function getLatestPrice() public view returns (
+        uint80 roundID, 
+        int price,
+        uint startedAt,
+        uint timeStamp,
+        uint80 answeredInRound
+    ) {
+        (
+            roundID, 
+            price,
+            startedAt,
+            timeStamp,
+            answeredInRound
+        ) = priceFeed.latestRoundData();
+    }   
+}
 // Link to the NFT - transfer ownership
 interface IERC721 {
     function transfer(address, uint) external;
 
-    function transferFrom(
+   function transferFrom(
         address,
         address,
         uint
     ) external;
+
+    function getCollection () external;
 }
 
-contract Auction {
+contract Auction is MaticUsdMumbaiOracle{
     event Start();
     event End(address highestBidder, uint highestBid);
     event Bid(address indexed sender, uint amount); // index allows you to check the events
@@ -92,5 +129,10 @@ contract Auction {
 
         ended = true;
         emit End(highestBidder, highestBid);
+    }
+    function getNFTs() external
+    {
+        //trying first with specific position = 0
+        return nft.getCollection();
     }
 }
