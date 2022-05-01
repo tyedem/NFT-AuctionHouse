@@ -44,7 +44,6 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl, MaticUsdMum
     using Counters for Counters.Counter;
     address contractAddress;
 
-    address payable auctionOwner;
     bytes32 public constant registrant = keccak256("Registrant");
 
     Counters.Counter private _tokenIdCounter;
@@ -52,13 +51,7 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl, MaticUsdMum
     constructor(address auctionAddress) ERC721("AuctionRegistry", "AUT") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(registrant, msg.sender);
-        auctionOwner == msg.sender;
         contractAddress = auctionAddress;
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == auctionOwner, "You are not the auction owner!");
-        _;
     }
 
     function registerNFT(
