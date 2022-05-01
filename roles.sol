@@ -49,8 +49,6 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl, MaticUsdMum
 
     Counters.Counter private _tokenIdCounter;
 
-    uint256 registrationPrice = 0.01 ether;
-
     constructor(address auctionAddress) ERC721("AuctionRegistry", "AUT") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(registrant, msg.sender);
@@ -73,14 +71,7 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, AccessControl, MaticUsdMum
         _tokenIdCounter.increment();
         _safeMint(owner, tokenId);
         _setTokenURI(tokenId, uri);
-
-        require(msg.value == registrationPrice, "Price must be equal to listing price of 0.01 ETH");
-        auctionOwner.transfer(address(this).balance);
-    }
-
-    function sendMoney(address to, uint value) public {
-    address payable receiver = payable(to);
-    receiver.transfer(value);
+        
     }
    
 
