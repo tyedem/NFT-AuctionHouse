@@ -47,7 +47,7 @@ contract AuctionRegistry is ERC721, ERC721URIStorage, Ownable {
         require(msg.value == registrationPrice, "Price must be equal to listing price of 0.01 ETH");
         payable(msg.sender);
         AuctionCollection[auctionCount] = NFT(owner, name, creator, uri, tokenId);
-        auctionCount++
+        auctionCount++;
 		
     }
     // The following function returns the AuctionCollection
