@@ -1,60 +1,19 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.10;
-pragma experimental ABIEncoderV2;
 
 // Link to the NFT - transfer ownership
-
 interface IERC721 {
     function transfer(address, uint) external;
 
-   function transferFrom(
+    function transferFrom(
         address,
         address,
         uint
     ) external;
-
-    function getCollection () external;
 }
 
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
-
-//import "./AuctionRegistry.sol";
-
-contract MaticUsdMumbaiOracle {
-
-    AggregatorV3Interface internal priceFeed;
-
-    /**
-     * Network: Polygon Testnet (Mumbai)s
-     * Aggregator: MATIC/USD
-     * Address: 0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada
-     */
-    constructor() {
-        priceFeed = AggregatorV3Interface(0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada);
-    }
-
-    /**
-     * Returns the latest price
-     */
-    function getLatestPrice() public view returns (
-        uint80 roundID, 
-        int price,
-        uint startedAt,
-        uint timeStamp,
-        uint80 answeredInRound
-    ) {
-        (
-            roundID, 
-            price,
-            startedAt,
-            timeStamp,
-            answeredInRound
-        ) = priceFeed.latestRoundData();
-    }   
-}
-
-contract Auction is MaticUsdMumbaiOracle {
+contract Auction {
     event Start();
     event End(address highestBidder, uint highestBid);
     event Bid(address indexed sender, uint amount); // index allows you to check the events
@@ -65,9 +24,6 @@ contract Auction is MaticUsdMumbaiOracle {
     bool public started;
     bool public ended;
     uint public endAt;   // time to end the auction
-
-    address operator;
-    bool approved;
 
 // define the NFT that will be auctioned - store contract of NFT + unique ID of the NFT you need to auction
     IERC721 public nft;
@@ -92,7 +48,7 @@ contract Auction is MaticUsdMumbaiOracle {
         nft.transferFrom(msg.sender, address(this), nftId); //transfer from owner to contract
 
         started = true;
-        endAt = block.timestamp + 1 minutes;
+        endAt = block.timestamp + 2 days;
 
         emit Start();
     }
@@ -137,11 +93,4 @@ contract Auction is MaticUsdMumbaiOracle {
         ended = true;
         emit End(highestBidder, highestBid);
     }
- //   function getNFTs() external
- //   {
-        //trying first with specific position = 0
-        //return nft.getCollection();
-       // return "HERE";
- //   }
-  
 }
