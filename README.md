@@ -41,7 +41,7 @@ Our NFT auction marketplace provides:
 
 In order to test and demo our application we need to have an inventory of digital artwork. We created some custom ones using Photoshop. In order to generate the IPFS links for the custom artwork, we utilized Pinata. 
 
-![alt=""](Images/creation_image.jpg)</br>
+![alt=""](Images/creation_image.png)</br>
 
 ## Development and Technologies
 ---
