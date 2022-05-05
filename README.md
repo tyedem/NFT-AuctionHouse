@@ -87,11 +87,12 @@ Download the following files to help you get started:
 1. Polygon Mumbai Test - Create account with https://rpc.maticvigil.com/ and create dapp RPC link for Mumbai Testnet.
 2. Ganache - Simply copy RPC Server from Ganache UI.
 
-### Load .env keys
+### Load Keys In .env File
 
 1. Load `PINATA_API_KEY` and `PINATA_SECRET_API_KEY` to .env file for IPFS Hashing and Storage
 2. Load `WEB3_PROVIDER_URI` with RPC Server address.
 3. Load `SMART_CONTRACT_ADDRESS` according to streamlit dapp. NFTRegistry dapp requires the `NFTRegistry.sol` contract address when deployed from Remix. Auction dapp requires `auction.sol` contract address when deployed from Remix.
+4. Load wallet's `MNEMONIC` seed phrase.
 
 ### Steps to Add Polygon Mumbai Testnet to MetaMask:
 
@@ -109,17 +110,24 @@ Download the following files to help you get started:
 
 To run the application, clone the code from the following GitHub link [git@github.com:tyedem/Project-3.git]. 
 
-1. Step 1: Compile the `auction.sol` to ensure it compiles without any errors. 
+1. Compile the `auction.sol` to ensure it compiles without any errors. 
 
-2. Step 2: Compile the `AuctionRegistry.sol` to ensure it is compiled successfully.
+2. Compile the `AuctionRegistry.sol` to ensure it is compiled successfully.
 
-3. Step 3: Prior to deployment, ensure your MetaMask/wallet is connected and the corresponding item (Injected Web3 for Remix IDE) is selected.
+3. Prior to deployment, ensure your MetaMask/wallet is connected and the corresponding item (Injected Web3 for Remix IDE) is selected.
 
-4. Step 4: Deploy the `auction.sol` and check the deployed contracts to ensure it is there. Copy the address as it would be required for the next step.
+4. Deploy the `auction.sol` and check the deployed contracts to ensure it is there. Copy the address as it would be required for the next step.
 
-5. Step 5: Add the `auction.sol` contract address to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
+5. Add the `auction.sol` contract address to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
 
-6. Step 6: Use the `auction.sol` address in `AuctionRegistry.sol` deployed contract in the SetApprovalForAll  to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
+6. Use the `auction.sol` address in `AuctionRegistry.sol` deployed contract in the SetApprovalForAll  to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
+
+### streamlit dapp
+
+1. Copy deployed `AuctionRegistry.sol` contract address to SMART_CONTRACT_ADDRESS key in .env file in location of AuctionRegistry dapp. Do the same for `auction.sol`, but in separate .env file in location of Auction dapp. Locations for each captured in below steps
+2. Open command line interface terminal
+3. For NFTRegistry dapp, navigate to location Project-3/Final/Streamlit_for_registry, then input command `streamlit run app.py`
+4. For Auction dapp, navigate to location Project-3/Final/Streamlit_for_registry, then input command `streamlit run app.py`
 
 
 ## Video Demos
