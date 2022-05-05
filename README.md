@@ -67,8 +67,9 @@ Our NFT marketplace is build using the following technologies:
 ### Files:
 Download the following files to help you get started:
 
-[Auction.sol](Final/auction.sol)
-[AuctionRegistry.sol](./Final/AuctionRegistry.sol)
+1. [AuctionRegistry.sol](./Final/AuctionRegistry.sol)
+2. [Auction.sol](Final/auction.sol)
+
 
 ### Add Polygon Mumbai Testnet to MetaMask steps:
 
@@ -84,8 +85,8 @@ Download the following files to help you get started:
 
 ### Obtain RPC Server Address
 
-1. Polygon Mumbai Test - Create account with https://rpc.maticvigil.com/ and create dapp RPC link for Mumbai Testnet.
-2. Ganache - Simply copy RPC Server from Ganache UI.
+1. Option 1 - Intended Project Blockchain - Polygon Mumbai Test - Create account with https://rpc.maticvigil.com/ and create dapp RPC link for Mumbai Testnet.
+2. Option 2 - Backup Project Blockchain - Simply copy RPC Server from Ganache UI.
 
 ### Load Keys In .env File
 
