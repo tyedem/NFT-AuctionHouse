@@ -49,11 +49,11 @@ In order to test and demo our application we need to have an inventory of digita
 Our NFT marketplace is build using the following technologies: 
 * Solidity (smart contracts)
 * Remix IDE
-* Streamlit (front-end)
+* Streamlit (frontend)
 * MetaMask (wallet)
-* Decentralized Blockchain Network (Polygon TestNet)
+* Decentralized Blockchain Network (Polygon TestNet/Ganache)
 * Xbox GameBar/Quicktime Player (Demo Video)
-* Chainlink (new technology/library - not covered in class)
+* ChainLink (new technology/library - not covered in class)
 * Pinata
 * Photoshop
 * Python
@@ -62,32 +62,65 @@ Our NFT marketplace is build using the following technologies:
 ![alt=""](Images/remix_image.png)</br>
 
 
-## Instructions
+## Instructions - Environment Preparation
 ---
 ### Files:
 Download the following files to help you get started:
 
-[Auction.sol](./Auction.sol)
-
+[Auction.sol](Auction.sol)
+/Users/tyesondemets/Desktop/Git/Project-3/Final
 [AuctionRegistry.sol](./AuctionRegistry.sol)
+
+### Add Polygon Mumbai Testnet to MetaMask steps:
+
+1. Open MetaMask and select `Settings`
+2. Select `Networks`
+3. Select `Add Network`
+4. Enter Network Name `Matic-Mumbai`
+5. Enter New RPC URL `https://rpc-mumbai.maticvigil.com/`
+6. Enter Chain ID `80001`
+7. Enter Currency Symbol `MATIC`
+8. Enter Block Explorer URL `https://mumbai.polygonscan.com/`
+
+### Obtain RPC Server Address
+
+1. Polygon Mumbai Test - Create account with https://rpc.maticvigil.com/ and create dapp RPC link for Mumbai Testnet.
+2. Ganache - Simply copy RPC Server from Ganache UI.
+
+### Load .env keys
+
+1. Load `PINATA_API_KEY` and `PINATA_SECRET_API_KEY` to .env file for IPFS Hashing and Storage
+2. Load `WEB3_PROVIDER_URI` with RPC Server address.
+3. Load `SMART_CONTRACT_ADDRESS` according to streamlit dapp. NFTRegistry dapp requires the `NFTRegistry.sol` contract address when deployed from Remix. Auction dapp requires `auction.sol` contract address when deployed from Remix.
+
+### Steps to Add Polygon Mumbai Testnet to MetaMask:
+
+1. Open MetaMask and select `Settings`
+2. Select `Networks`
+3. Select `Add Network`
+4. Enter Network Name `Matic-Mumbai`
+5. Enter New RPC URL `https://rpc-mumbai.maticvigil.com/`
+6. Enter Chain ID `80001`
+7. Enter Currency Symbol `MATIC`
+8. Enter Block Explorer URL `https://mumbai.polygonscan.com/`
+9. Add MATIC to accounta via https://faucet.polygon.technology/
 
 ### Remix Steps:
 
 To run the application, clone the code from the following GitHub link [git@github.com:tyedem/Project-3.git]. 
 
-1. Step 1: Compile the Auction.sol to ensure it compiles without any errors. 
+1. Step 1: Compile the `auction.sol` to ensure it compiles without any errors. 
 
-2. Step 2: Compile the AuctionRegistry.sol to ensure it is completed successfully.
+2. Step 2: Compile the `AuctionRegistry.sol` to ensure it is compiled successfully.
 
 3. Step 3: Prior to deployment, ensure your MetaMask/wallet is connected and the corresponding item (Injected Web3 for Remix IDE) is selected.
 
-4. Step 4: Deploy the Auction.sol and check the deployed contracts to ensure it is there. Copy the address as it would be required for the next step.
+4. Step 4: Deploy the `auction.sol` and check the deployed contracts to ensure it is there. Copy the address as it would be required for the next step.
 
-5. Step 5: Add the Auction address to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
+5. Step 5: Add the `auction.sol` contract address to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
 
-6. Step 6: Use the Auction address in Auction Registry Deployed Contract in the SetApprovalForAll  to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
+6. Step 6: Use the `auction.sol` address in `AuctionRegistry.sol` deployed contract in the SetApprovalForAll  to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
 
-TO add Matic: https://faucet.polygon.technology/
 
 ## Video Demos
 ---
@@ -106,7 +139,7 @@ Though we aimed to achieve a minimum viable product (MVP) within 2 weeks, we wer
 1. **Polygon (MATIC) Mumbai Testnet** - In Remix, there are no issues deploying to Polygon's Mumbai testnet. However, when running dapp via streamlit, we are unable to successfully load address accounts. Thus, more time would be needed to resolve the dapps operability with Polygon. In order to circumvent the issue with the project as is, loading Ethereum's Ganache testnet is a sufficient solution. Please note, obtaining a MATIC/USD price feed via the `getLatestPrice` call function is only possible when connected to Polygon's Mumbai testnet. Otherwise, this function is operable when connected to Ganache.
 2. **Interoperability of streamlit dapps** - The current state of the project has 2 separate dapps. One for registering NFTs only possible via the auction owner and then another one to place bids on NFTs that are registered. However, A programmatic mechanism has not been sufficiently worked out to connect operability of boths dapps seamlessly. Alternatively, considerations may be made to consolidate the dapps into a single frontend platform.
 3. **Smart Contract Bug** - `End` Function in `auction.sol` contract does not execute when the auction time has run out and thus leaving the auction open without a means to complete the transfer of NFT ownership and the withdrawal of bid funds to their respective accounts.
-4. **Streamlit Bugs** - `Bid` function does not execute correctly for `app3.py`, i.e. our auction dapp. `End` function bug still applies.  
+4. **Streamlit Bugs** - `Bid` function does not execute correctly for `app3.py`, i.e. our auction dapp. `End` function bug still applies.
 ___
 
 
@@ -137,6 +170,7 @@ Project Team
 [NFT Marketplace](https://betterprogramming.pub/solidity-contracts-for-an-nft-marketplace-5a706bb94486)</br>
 [ChainLink Price Feed](https://docs.chain.link/docs/get-the-latest-price/)</br>
 [OpenZeppelin Contracts Wizard](https://docs.openzeppelin.com/contracts/4.x/wizard) </br>
+[OpenZeppelin ERC721 Docs](https://docs.openzeppelin.com/contracts/3.x/api/token/erc721#IERC721-setApprovalForAll-address-bool-)</br>
 
 
 
