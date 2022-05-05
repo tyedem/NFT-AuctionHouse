@@ -83,10 +83,11 @@ Download the following files to help you get started:
 8. Enter Block Explorer URL `https://mumbai.polygonscan.com/`
 9. Add MATIC to accounts via https://faucet.polygon.technology/
 
+
 ### Obtain RPC Server Address
 
-1. Option 1 - Intended Project Blockchain - Polygon Mumbai Test - Create account with https://rpc.maticvigil.com/ and create dapp RPC link for Mumbai Testnet.
-2. Option 2 - Backup Project Blockchain - Simply copy RPC Server from Ganache UI.
+1. Option 1 - Polygon Mumbai Test - Intended Project Blockchain - Create account with https://rpc.maticvigil.com/ and create dapp RPC link for Mumbai Testnet.
+2. Option 2 - Ganache - Backup Project Blockchain - Simply copy RPC Server from Ganache UI.
 
 ### Load Keys In .env File
 
@@ -121,11 +122,11 @@ To run the application, clone the code from the following GitHub link [git@githu
 
 ## Video Demos
 ---
-[Remix Contracts Demo](./Images/Demo)
+[Remix Contracts Demo](./RemixAuctionDemo.mov)
 
-[Dapp NFT Registry Demo]()
+[Dapp NFT Registry Demo](./streamlitAuctionRegistrydemo.mov)
 
-[Dapp Auction Demo]()
+[Dapp Auction Demo](./streamlitAuctiondemo.mov)
 
 # Project Outcome Summary
 
@@ -133,7 +134,7 @@ Though we aimed to achieve a minimum viable product (MVP) within 2 weeks, we wer
 
 ## Optimization and Debugging Opportunities
 
-1. **Polygon (MATIC) Mumbai Testnet** - In Remix, there are no issues deploying to Polygon's Mumbai testnet. However, when running dapp via streamlit, we are unable to successfully load address accounts. Thus, more time would be needed to resolve the dapps operability with Polygon. In order to circumvent the issue with the project as is, loading Ethereum's Ganache testnet is a sufficient solution. Please note, obtaining a MATIC/USD price feed via the `getLatestPrice` call function is only possible when connected to Polygon's Mumbai testnet. Otherwise, this function is operable when connected to Ganache.
+1. **Polygon (MATIC) Mumbai Testnet** - In Remix, there are no issues deploying to Polygon's Mumbai testnet. However, when running dapp via streamlit, we are unable to successfully load address accounts. Thus, more time would be needed to resolve the dapps operability with Polygon. In order to circumvent the issue with the project as is, loading Ethereum's Ganache testnet is a sufficient solution. Please note, obtaining a MATIC/USD price feed via the `getLatestPrice` call function is only possible when connected to Polygon's Mumbai testnet. Otherwise, this function is not operable when connected to Ganache.
 2. **Interoperability of streamlit dapps** - The current state of the project has 2 separate dapps. One for registering NFTs only possible via the auction owner and then another one to place bids on NFTs that are registered. However, A programmatic mechanism has not been sufficiently worked out to connect operability of boths dapps seamlessly. Alternatively, considerations may be made to consolidate the dapps into a single frontend platform.
 3. **Smart Contract Bug** - `End` Function in `auction.sol` contract does not execute when the auction time has run out and thus leaving the auction open without a means to complete the transfer of NFT ownership and the withdrawal of bid funds to their respective accounts.
 4. **Streamlit Bugs** - `Bid` function does not execute correctly for `app3.py`, i.e. our auction dapp. `End` function bug still applies.
