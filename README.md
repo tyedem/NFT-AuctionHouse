@@ -67,9 +67,8 @@ Our NFT marketplace is build using the following technologies:
 ### Files:
 Download the following files to help you get started:
 
-[Auction.sol](Auction.sol)
-/Users/tyesondemets/Desktop/Git/Project-3/Final
-[AuctionRegistry.sol](./AuctionRegistry.sol)
+[Auction.sol](Final/auction.sol)
+[AuctionRegistry.sol](./Final/AuctionRegistry.sol)
 
 ### Add Polygon Mumbai Testnet to MetaMask steps:
 
@@ -81,6 +80,7 @@ Download the following files to help you get started:
 6. Enter Chain ID `80001`
 7. Enter Currency Symbol `MATIC`
 8. Enter Block Explorer URL `https://mumbai.polygonscan.com/`
+9. Add MATIC to accounts via https://faucet.polygon.technology/
 
 ### Obtain RPC Server Address
 
@@ -93,18 +93,6 @@ Download the following files to help you get started:
 2. Load `WEB3_PROVIDER_URI` with RPC Server address.
 3. Load `SMART_CONTRACT_ADDRESS` according to streamlit dapp. NFTRegistry dapp requires the `NFTRegistry.sol` contract address when deployed from Remix. Auction dapp requires `auction.sol` contract address when deployed from Remix.
 4. Load wallet's `MNEMONIC` seed phrase.
-
-### Steps to Add Polygon Mumbai Testnet to MetaMask:
-
-1. Open MetaMask and select `Settings`
-2. Select `Networks`
-3. Select `Add Network`
-4. Enter Network Name `Matic-Mumbai`
-5. Enter New RPC URL `https://rpc-mumbai.maticvigil.com/`
-6. Enter Chain ID `80001`
-7. Enter Currency Symbol `MATIC`
-8. Enter Block Explorer URL `https://mumbai.polygonscan.com/`
-9. Add MATIC to accounta via https://faucet.polygon.technology/
 
 ### Remix Steps:
 
