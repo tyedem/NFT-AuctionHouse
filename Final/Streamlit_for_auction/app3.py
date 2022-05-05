@@ -51,16 +51,16 @@ contract = load_contract()
 # View the NFT (Hardpasted)
 ################################################################################
 art_database = {
-    "Image1": ["Image1", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Gwen", 2, "Images/Image1.png"],
-    "Image2": ["Image2", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Maria", 2, "Images/Image2.png"],
-    "Image3": ["Image3", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Atousa", 2, "Images/Image3.png"],
-    "Image4": ["Image4", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Tyeson", 2, "Images/Image4.png"],
-    "Image5": ["Image5", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Ritesh", 2, "Images/Image5.png"],
-    "Image6": ["Image6", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Gwen", 4, "Images/Image6.png"],
-    "Image7": ["Image7", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Maria", 4, "Images/Image7.png"],
-    "Image8": ["Image8", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Atousa", 4, "Images/Image8.png"],
-    "Image9": ["Image9", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Tyeson", 4, "Images/Image9.png"],
-    "Image10": ["Image10", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Ritesh", 4, "Images/Image10.png"],
+    "Image1": ["Image1", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Gwen", 2, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image1.png"],
+    "Image2": ["Image2", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Maria", 2, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image2.png"],
+    "Image3": ["Image3", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Atousa", 2, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image3.png"],
+    "Image4": ["Image4", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Tyeson", 2, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image4.png"],
+    "Image5": ["Image5", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Ritesh", 2, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image5.png"],
+    "Image6": ["Image6", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Gwen", 4, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image6.png"],
+    "Image7": ["Image7", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Maria", 4, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image7.png"],
+    "Image8": ["Image8", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Atousa", 4, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image8.png"],
+    "Image9": ["Image9", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Tyeson", 4, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image9.png"],
+    "Image10": ["Image10", "0xc259A1dc029dfdC30977E8878270ddF5d82a89FF", "Ritesh", 4, "https://gateway.pinata.cloud/ipfs/Qmb6TwuQmEdd1PhqB8dY8ZFLUA4RgEf9atrcm8Jw3S3nhW/Image10.png"],
 }
 
 art = ["Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7", "Image8", "Image9", "Image10"]
