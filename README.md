@@ -7,6 +7,7 @@
 * [Development and Technologies](#development-and-technologies)
 * [Instructions](#instructions)
 * [Video Demo](#video-demo)
+* [Outcome And Summary](#outcome-and-summary)
 * [Contributors](#contributors)
 * [References and Resources](#references-and-resources)
 
@@ -18,22 +19,26 @@ In this project, we aim to create an NFT marketplace decentralized appliccation 
 
 ## Goals
 ---
+
+![alt=""](Images/nft_popularity_image.png)</br>
+
 In recent years, there has been an ever increasing interest in NFTs - As an example, one NFT which was just an image of a column written in New York Times sold for $560,000 in a matter of days. Observing such keen interest in the demand and sale of NFTs as well as the expanding market for digital assets, we felt it would be a great idea to launch our very own T-GRAM Auction Marketplace. 
 
 T-GRAM's goal is to support local and emerging artists and provide them a fast and efficient FinTech platform to register their work and sell them through an auction-based marketplace allowing them to connect with collectors all over the world through a decentralized network.
 
 Our NFT auction marketplace provides:
-* A platform that connects artists and collectors through blockchain technology with complete transparency. It holds asset/token/deed that is to be auctioned using ERC721 standards.
-* Ability to place bids in auctions, over a decentralized network with following functions and features:
+1. A platform that connects artists and collectors through blockchain technology with complete transparency. It holds asset/token/deed that is to be auctioned using ERC721 standards.
+2. Ability to place bids in auctions, over a decentralized network with following functions and features: </br>
+>
         - ability to participate in an English auction whereby bid prices keep increasing over the duration of the auction.
         - ability to monitor the auction process (start bid, bid price, highest bidder etc.)
         - ability to view the frequency of each bidder
-        - ensuring transfer of NFT ownership upon auction completion
-        - ensuring safe and accurate transfer of funds upon auction completion
-        - Refund of funds to bidders that did not get not lucky
-* Use of Polygon Network provided the users with a method that is lower in cost and more efficient as compared to transacting directly over the Ethereum Network (Proof of Stake vs Proof of Work benefits)
-* Works with digital assests stored over an established and secure file storage system (IPFS - Pinata)
-* T-GRAM does not charge or retain any of the profits from these sales hence providing a free of cost platform for the artists. As opposed to OpenSea, who charge a chunky one-time registration fee to list each NFT as well as recurring fees.
+        - safe and secure transfer of NFT ownership upon auction completion
+        - safe and secure transfer of funds upon auction completion
+        - refund of funds to bidders that did not get not lucky
+3. Use of Polygon Network provides the users with a method that is lower in cost and more efficient (faster) as compared to transacting directly over the Ethereum Network (Polygon is essentially a "scaling solution" that aims to address the inefficiences of transacting with the high demand ethereum network - it groups multiple transactions into a single block before comitting to the main ethereum network)
+4. Works with digital assests stored over an established and secure file storage system (IPFS - Pinata)
+5. T-GRAM does not charge any fees or retain any of the profits from the NFT sales hence providing a free of cost platform for the artists. As opposed to OpenSea, who charge a chunky one-time registration fee to list each NFT as well as recurring fees.
 
 
 ## Data Collection and Preparation
@@ -57,6 +62,21 @@ Our NFT marketplace is build using the following technologies:
 * Pinata
 * Photoshop
 * Python
+
+### Libraries Used
+* os
+* json
+* requests
+* eth_account
+* eth_typing
+* web3
+* pathlib
+* dotenv
+* streamlit
+* dataclasses
+* typing
+* chainlink (AggregatorV3Interface)
+* openzeppelin (ERC721, ERC721URIStorage, Ownable, Counters)
 
 ![alt=""](Images/solidity_image.png)</br>
 ![alt=""](Images/remix_image.png)</br>
@@ -110,7 +130,14 @@ To run the application, clone the code from this GitHub repository.
 
 5. Add the `auction.sol` contract address to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
 
-6. Use the `auction.sol` address in `AuctionRegistry.sol` deployed contract in the SetApprovalForAll  to the Deploy the AuctionRegistry.sol and proceed to deploy the AuctionRegistry.sol
+6. In `AuctionRegistry.sol` deployed contract, use the address of the Auction contract in the SetApprovalForAll input field and a value of true to ensure the NFT that will be registered can participate in the Auction.
+
+7. In `AuctionRegistry.sol` deployed contract, use the registerNFT fields to provide an address ownner and key NFT details and register it for the Auction.
+
+8. To proceed with the auction process on the registered NFT, please follow the steps demonstrated in the Auction Demo (see Videos Demos section).
+
+
+![alt=""](Images/remix-metamask.png)</br>
 
 ### streamlit dapp
 
@@ -119,6 +146,11 @@ To run the application, clone the code from this GitHub repository.
 3. For NFTRegistry dapp, navigate to location Project-3/Final/Streamlit_for_registry, then input command `streamlit run app.py`
 4. For Auction dapp, navigate to location Project-3/Final/Streamlit_for_registry, then input command `streamlit run app.py`
 
+![alt=""](Images/streamlit-registry.png)</br>
+
+![alt=""](Images/streamlit-registry-tx.png)</br>
+
+![alt=""](Images/streamlit-auction.png)</br>
 
 ## Video Demos
 ---
@@ -128,11 +160,11 @@ To run the application, clone the code from this GitHub repository.
 
 [Dapp Auction Demo](./streamlitAuctiondemo.mov)
 
-# Project Outcome Summary
+## Outcome and Summary
 
 Though we aimed to achieve a minimum viable product (MVP) within 2 weeks, we were not fully successful in working out every bug we have encountered. Below is a list of known bugs in the current version of T-GRAM's NFT Auction House and some areas to consider for optimizations:
 
-## Optimization and Debugging Opportunities
+### Optimization and Debugging Opportunities
 
 1. **Polygon (MATIC) Mumbai Testnet** - In Remix, there are no issues deploying to Polygon's Mumbai testnet. However, when running dapp via streamlit, we are unable to successfully load address accounts. Thus, more time would be needed to resolve the dapps operability with Polygon. In order to circumvent the issue with the project as is, loading Ethereum's Ganache testnet is a sufficient solution. Please note, obtaining a MATIC/USD price feed via the `getLatestPrice` call function is only possible when connected to Polygon's Mumbai testnet. Otherwise, this function is not operable when connected to Ganache.
 2. **Interoperability of streamlit dapps** - The current state of the project has 2 separate dapps. One for registering NFTs only possible via the auction owner and then another one to place bids on NFTs that are registered. However, A programmatic mechanism has not been sufficiently worked out to connect operability of boths dapps seamlessly. Alternatively, considerations may be made to consolidate the dapps into a single frontend platform.
@@ -159,6 +191,7 @@ Project Team
 ## References and Resources
 ---
 [NFT Sales](https://www.nytimes.com/2021/03/26/technology/nft-sale.html)</br>
+[NFT Sale Volumes](https://thedefiant.io/nft-sales-boom-past-100m-in-30-days/)</br>
 [Gas-Free NFT IPFS](https://opensea.io/blog/announcements/decentralizing-nft-metadata-on-opensea/)</br>
 [OpenSea Fees](https://support.opensea.io/hc/en-us/articles/1500006315941-What-are-gas-fees-on-Ethereum-)</br>
 [dAPP Auction](https://github.com/sbwengineer/auction-dapp-solidity-vue)</br>
