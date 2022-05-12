@@ -98,7 +98,7 @@ Download the following files to help you get started:
 
 ### Remix Steps:
 
-To run the application, clone the code from the following GitHub link [git@github.com:tyedem/Project-3.git]. 
+To run the application, clone the code from this GitHub repository.
 
 1. Compile the `auction.sol` to ensure it compiles without any errors. 
 
